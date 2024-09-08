@@ -32,12 +32,20 @@ def main():
         new_message = [user_input]
         encoded_new_message = vectorizer.transform(new_message).toarray()
         encoded_new_message = scaler.transform(encoded_new_message)
-        new_prediction = predict(encoded_new_message, w_array)
+        new_prediction = predict(encoded_new_message, w_array)[0]
 
-        print('Spam' if new_prediction > 0.5 else 'Not Spam', new_prediction)
+        prediction_statement = "Spam"
+        if new_prediction < 0.5:
+            prediction_statement = "Not Spam"
+        
+        if new_prediction == 0.5:
+            prediction_statement = "May be spam or not"
+
+        print(f"Prediction Value     : {new_prediction *100 :.3f} %")
+        print(f"Prediction Statement : {prediction_statement}")
+
     except KeyboardInterrupt:
         print("\nProcess Aborted!")
 
 if __name__ == "__main__":
     main()
-

@@ -59,8 +59,10 @@ def main():
     w_array = np.zeros(x_train.shape[1])
 
     # Training parameters
-    iterations = 1000
+    iterations = 900
     learning_rate = 0.1
+
+    # For plotting the cost values
     cost_values = []
 
     # Training the model
