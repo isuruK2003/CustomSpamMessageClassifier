@@ -1,21 +1,40 @@
 import pickle
 from model_trainer import predict
 
-with open('trained_model.pkl', 'rb') as file:
-    modal_data = pickle.load(file)
-    vectorizer = modal_data['vectorizer']
-    scaler = modal_data['scaler']
-    w_array = modal_data['w_array']
+def get_model_data(filename):
+    try:
+        model_data = {}
+        with open(filename, 'rb') as file:
+            model_data = pickle.load(file)
+    except FileNotFoundError:
+        print("Pickled file not found! Please train the model and try again!")
+    finally:
+        return model_data
 
-user_input = None
+def get_input(prompt):
+    user_input = None
+    while not user_input:
+        user_input = input(prompt)
+    return user_input
 
-while not user_input: # will prevent blank inputs
-    user_input = input("Enter the message: ")
+def main():
+    user_input = get_input("Enter the message: ")
+    model_data = get_model_data("trained_model.pkl")
 
-new_message = [user_input]
+    if not (user_input or model_data):
+        return
 
-encoded_new_message = vectorizer.transform(new_message).toarray()
-encoded_new_message = scaler.transform(encoded_new_message)
+    vectorizer = model_data["vectorizer"]
+    scaler = model_data["scaler"]
+    w_array = model_data["w_array"]
 
-new_prediction = predict(encoded_new_message, w_array)
-print('Spam' if new_prediction > 0.5 else 'Not Spam', new_prediction)
+    new_message = [user_input]
+    encoded_new_message = vectorizer.transform(new_message).toarray()
+    encoded_new_message = scaler.transform(encoded_new_message)
+    new_prediction = predict(encoded_new_message, w_array)
+
+    print('Spam' if new_prediction > 0.5 else 'Not Spam', new_prediction)
+
+if __name__ == "__main__":
+    main()
+
