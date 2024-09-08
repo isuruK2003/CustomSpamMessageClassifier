@@ -38,7 +38,7 @@ def gradient_descent(x_matrix, y_array, w_array, learning_rate):
 
 def main():
     # Reading the dataset
-    df = pd.read_json("spam_dataset.json")
+    df = pd.read_json("data\json\sms_spam_collection.json")
 
     # Feature extraction using TfidfVectorizer
     vectorizer = TfidfVectorizer(stop_words='english')
@@ -84,7 +84,7 @@ def main():
     print(f"Accuracy on test set: {accuracy * 100:.2f}%")
 
     # Storing the Model
-    with open('trained_model.pkl', 'wb') as file:
+    with open('trained_models/sms_data_model.pkl', 'wb') as file:
         modal_data = {
             'vectorizer':vectorizer,
             'scaler':scaler,

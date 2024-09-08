@@ -18,22 +18,25 @@ def get_input(prompt):
     return user_input
 
 def main():
-    user_input = get_input("Enter the message: ")
-    model_data = get_model_data("trained_model.pkl")
+    try:
+        user_input = get_input("Enter the message: ")
+        model_data = get_model_data("trained_models/sms_data_model.pkl")
 
-    if not (user_input or model_data):
-        return
+        if not (user_input or model_data):
+            return
 
-    vectorizer = model_data["vectorizer"]
-    scaler = model_data["scaler"]
-    w_array = model_data["w_array"]
+        vectorizer = model_data["vectorizer"]
+        scaler = model_data["scaler"]
+        w_array = model_data["w_array"]
 
-    new_message = [user_input]
-    encoded_new_message = vectorizer.transform(new_message).toarray()
-    encoded_new_message = scaler.transform(encoded_new_message)
-    new_prediction = predict(encoded_new_message, w_array)
+        new_message = [user_input]
+        encoded_new_message = vectorizer.transform(new_message).toarray()
+        encoded_new_message = scaler.transform(encoded_new_message)
+        new_prediction = predict(encoded_new_message, w_array)
 
-    print('Spam' if new_prediction > 0.5 else 'Not Spam', new_prediction)
+        print('Spam' if new_prediction > 0.5 else 'Not Spam', new_prediction)
+    except KeyboardInterrupt:
+        print("\nProcess Aborted!")
 
 if __name__ == "__main__":
     main()
