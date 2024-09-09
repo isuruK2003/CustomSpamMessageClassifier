@@ -4,7 +4,7 @@ data = []
 lines = []
 
 # Reading the original file
-with open("data\original\SMSSpamCollection") as file:
+with open("data/original/SMSSpamCollection") as file:
     lines.extend(file.readlines())
 
 # Extracting the data

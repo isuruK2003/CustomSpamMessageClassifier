@@ -1,10 +1,10 @@
 """
-------- This is a refined version of the original version ------
+    Spam Message Classifier
+    ```````````````````````
+    Note: This is a refined version of the original version
 
-Original file is located at
+    Original file is located at:
     https://colab.research.google.com/drive/1MFxWal0TbzP5FnrNoSKtygINWHfKn2DV
-
-# Logistics Regression
 
 """
 
@@ -15,7 +15,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score
-import pickle # to store the trained model
+import pickle
 
 # Sigmoid function for predictions
 def predict(x_array, w_array):
@@ -38,7 +38,7 @@ def gradient_descent(x_matrix, y_array, w_array, learning_rate):
 
 def main():
     # Reading the dataset
-    df = pd.read_json("data\json\sms_spam_collection.json")
+    df = pd.read_json("data/json/sms_spam_collection.json")
 
     # Feature extraction using TfidfVectorizer
     vectorizer = TfidfVectorizer(stop_words='english')
@@ -59,7 +59,7 @@ def main():
     w_array = np.zeros(x_train.shape[1])
 
     # Training parameters
-    iterations = 900
+    iterations = 800
     learning_rate = 0.1
 
     # For plotting the cost values
