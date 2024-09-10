@@ -1,10 +1,9 @@
 """
-    Spam Message Classifier
-    ```````````````````````
-    Note: This is a refined version of the original version
+Spam Message Classifier
+```````````````````````
 
-    Original file is located at:
-    https://colab.research.google.com/drive/1MFxWal0TbzP5FnrNoSKtygINWHfKn2DV
+Original file is located at:
+https://colab.research.google.com/drive/1e1JmnKRCUrrD6va_wHvzZBXe7pSIBXJ3#scrollTo=y__3ZtkA3Ws5
 
 """
 
