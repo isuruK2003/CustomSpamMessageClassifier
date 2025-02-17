@@ -54,3 +54,4 @@ You can install the required dependencies using `pip`:
 
 ```bash
 pip install numpy pandas scikit-learn matplotlib
+```
